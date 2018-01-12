@@ -30,7 +30,7 @@ __global__ void affine_decrypt(int *d_input, int *d_output)
 __global__ void affine_decrypt_multiblock(int *d_input, int *d_output)
 {
 	int index = blockDim.x*blockIdx.x + threadIdx.x;
-	d_output[index] = modulo(A_MMI_M * (d_input[index] - B), M);
+	d_output[index] = modulo(A_inv * (d_input[index] - B), M);
 }
 
 
