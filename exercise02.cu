@@ -16,12 +16,8 @@ int validate(int *a, int *ref);
 
 __global__ void vectorAdd(int *a, int *b, int *c, int max) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
-	if(i <= max){
+	if(i < max){
 		c[i] = a[i] + b[i];
-	}else{
-		
-	}
-	
 }
 
 
