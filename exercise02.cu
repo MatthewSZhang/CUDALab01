@@ -4,7 +4,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-#define N 2048
+#define N 2050
 #define THREADS_PER_BLOCK 128
 
 void checkCUDAError(const char*);
@@ -16,7 +16,12 @@ int validate(int *a, int *ref);
 
 __global__ void vectorAdd(int *a, int *b, int *c, int max) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
-	c[i] = a[i] + b[i];
+	if(i <= max){
+		c[i] = a[i] + b[i];
+	}else{
+		
+	}
+	
 }
 
 
