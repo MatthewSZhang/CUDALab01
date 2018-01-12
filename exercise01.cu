@@ -29,7 +29,8 @@ __global__ void affine_decrypt(int *d_input, int *d_output)
 
 __global__ void affine_decrypt_multiblock(int *d_input, int *d_output)
 {
-	/* Exercise 1.8 */
+	int index = blockDim.x*blockIdx.x + threadIdx.x;
+	d_output[index] = modulo(A_MMI_M * (d_input[index] - B), M);
 }
 
 
@@ -59,9 +60,9 @@ int main(int argc, char *argv[])
 	checkCUDAError("Input transfer to device");
 
 	/* Exercise 1.5: Configure the grid of thread blocks and run the GPU kernel */
-	dim3 blocksPerGrid(1, 1, 1);
-	dim3 threadsPerBlock(N, 1, 1);
-	affine_decrypt<<<blocksPerGrid, threadsPerBlock>>>(d_input, d_output);
+	dim3 blocksPerGrid(3, 2, 1);
+	dim3 threadsPerBlock(N, 2, 1);
+	affine_decrypt_multiblock<<<blocksPerGrid, threadsPerBlock>>>(d_input, d_output);
 
 	/* wait for all threads to complete */
 	cudaThreadSynchronize();
