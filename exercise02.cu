@@ -53,6 +53,10 @@ int main(void) {
 	// Copy result back to host
 	cudaMemcpy(c, d_c, size, cudaMemcpyDeviceToHost);
 	checkCUDAError("CUDA memcpy");
+	
+	//validate
+	errors = validate(c, c_ref);
+	printf("CUDA GPU result has %d errors.\n", errors);
 
 	// Cleanup
 	free(a); free(b); free(c);
