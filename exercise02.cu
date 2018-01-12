@@ -58,6 +58,9 @@ int main(void) {
 	cudaMemcpy(c, d_c, size, cudaMemcpyDeviceToHost);
 	checkCUDAError("CUDA memcpy");
 	
+	//perform CPU version
+	vectorAddCPU(a, b, c_ref);
+	
 	//validate
 	errors = validate(c, c_ref);
 	printf("CUDA GPU result has %d errors.\n", errors);
