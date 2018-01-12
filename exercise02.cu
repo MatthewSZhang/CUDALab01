@@ -78,3 +78,21 @@ void random_ints(int *a)
 		a[i] = rand();
 	}
 }
+
+void vectorAddCPU(int *a, int *b, int *c)
+{
+	for (int i = 0; i < N; i++){
+		c[i] = a[i] + b[i];
+	}
+}
+
+int validate(int *a, int *ref){
+	int errors = 0;
+	for (int i = 0; i < N; i++){
+		if (a[i] != ref[i]){
+			errors++;
+			fprintf(stderr, "ERROR at index %d: GPU result %d does not match CPU value of %d\n", i, a[i], ref[i]);
+		}
+	}
+	return errors;
+}
