@@ -7,4 +7,4 @@
 #$ -q rse-training.q 
 
 # Call your CUDA executable
-./my_cuda_program
+./exercise02
