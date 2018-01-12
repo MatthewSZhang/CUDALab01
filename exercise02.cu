@@ -9,6 +9,8 @@
 
 void checkCUDAError(const char*);
 void random_ints(int *a);
+void vectorAddCPU(int *a, int *b, int *c);
+int validate(int *a, int *ref);
 
 
 
