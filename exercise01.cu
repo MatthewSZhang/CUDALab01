@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 	/* Exercise 1.5: Configure the grid of thread blocks and run the GPU kernel */
 	dim3 blocksPerGrid(1, 1, 1);
 	dim3 threadsPerBlock(N, 1, 1);
-	affine_decrypt<<<threadsPerBlock, threadsPerBlock>>>(d_input, d_output);
+	affine_decrypt<<<blocksPerGrid, threadsPerBlock>>>(d_input, d_output);
 
 	/* wait for all threads to complete */
 	cudaThreadSynchronize();
