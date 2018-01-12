@@ -60,8 +60,8 @@ int main(int argc, char *argv[])
 	checkCUDAError("Input transfer to device");
 
 	/* Exercise 1.5: Configure the grid of thread blocks and run the GPU kernel */
-	dim3 blocksPerGrid(8, 2, 1);
-	dim3 threadsPerBlock(N, 2, 1);
+	dim3 blocksPerGrid(32, 1, 1);
+	dim3 threadsPerBlock(N/32, 2, 1);
 	affine_decrypt_multiblock<<<blocksPerGrid, threadsPerBlock>>>(d_input, d_output);
 
 	/* wait for all threads to complete */
