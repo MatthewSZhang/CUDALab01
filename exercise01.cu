@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	checkCUDAError("Kernel execution");
 
 	/* Exercise 1.6: copy the gpu output back to the host */
-	cudaMemcpy(d_output, h_output, size, cudaMemcpyHostToDevice);
+	cudaMemcpy(h_output, d_output, size, cudaMemcpyDeviceToHost);
 	checkCUDAError("Result transfer to host");
 
 	/* print out the result to screen */
