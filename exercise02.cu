@@ -18,6 +18,7 @@ __global__ void vectorAdd(int *a, int *b, int *c, int max) {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	if(i < max){
 		c[i] = a[i] + b[i];
+	}
 }
 
 
